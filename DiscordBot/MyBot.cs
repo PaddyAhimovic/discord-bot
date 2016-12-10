@@ -51,7 +51,8 @@ namespace DiscordBot
             commands.CreateCommand("Jacob")
                 .Do(async (e) =>
                 {
-                    await e.Channel.SendMessage("Resident salty league player who TOTALLY didn't get boosted to diamond");
+                    await e.Channel.SendMessage("The only person who's watched more one piece than Kevin Gallagher");
+                    await e.Channel.SendMessage("http://i.imgur.com/C2HNQ2s.png");
                 });
 
             commands.CreateCommand("Jeffrey")
@@ -65,18 +66,21 @@ namespace DiscordBot
                 .Do(async (e) =>
                 {
                     await e.Channel.SendMessage("Did you mean to say \"!meg \"?");
+                    await e.Channel.SendMessage("http://i.imgur.com/9sHddY7.png");
                 });
 
             commands.CreateCommand("Ryan")
                 .Do(async (e) =>
                 {
-                    await e.Channel.SendMessage("Washed up CS player who has a fake shoe size");
+                    await e.Channel.SendMessage("Washed up CS player who has a \"normal\" shoe size");
+                    await e.Channel.SendMessage("http://i.imgur.com/Okofs8D.png");
                 });
 
             commands.CreateCommand("Ennis")
                 .Do(async (e) =>
                 {
-                    await e.Channel.SendMessage("Avatar is an anime you stupid fucking fag");
+                    await e.Channel.SendMessage("Put your cock away!");
+                    await e.Channel.SendMessage("http://i.imgur.com/wfRbBAN.png");
                 });
 
             commands.CreateCommand("Daniel")
@@ -96,6 +100,7 @@ namespace DiscordBot
                 .Do(async (e) =>
                 {
                     await e.Channel.SendMessage("Melee is a children's party game and fails as a competitive one");
+                    await e.Channel.SendMessage("http://i.imgur.com/FAa3zon.png");
                 });
 
             //now everything is pretty much done through function calls because that's nicer
