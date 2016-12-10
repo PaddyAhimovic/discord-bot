@@ -1,0 +1,24 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "description": "sick ass discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaddyAhimovic/discord-bot.git"
+  },
+  "keywords": [
+    "great",
+    "fun",
+    "gay"
+  ],
+  "author": "Paddy \"Essential Tremors\" Ahimovic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaddyAhimovic/discord-bot/issues"
+  },
+  "homepage": "https://github.com/PaddyAhimovic/discord-bot#readme"
+}
