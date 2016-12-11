@@ -19,6 +19,7 @@ namespace DiscordBot
         CommandService commands;
         //this should initialize the meme database and RNG
         List<string> memes = File.ReadAllLines("C:\\Users\\Paddy\\Documents\\Projects\\DiscordBot\\Memes.txt").ToList();
+        List<string> animemes = File.ReadAllLines("C:\\Users\\Paddy\\Documents\\Projects\\DiscordBot\\Animes.txt").ToList();
         Random rng;
 
         public MyBot()
@@ -105,12 +106,44 @@ namespace DiscordBot
 
             //now everything is pretty much done through function calls because that's nicer
             AddMeme();
+            AddAnime();
             OutputMeme();
+            OutputAnime();
             //connects bot to all the servers it's in
             discord.ExecuteAndWait(async () =>
             {
                 await discord.Connect("MjU2OTU5NDkyNzE2MTAxNjMy.CyzwFQ.qIGLgrLGIAW7YpJL58vrn_qtmx4", TokenType.Bot);
             });
+        }
+
+        //takes most recent message before command and stores it as a new anime
+        private void AddAnime()
+        {
+            commands.CreateCommand("add anime")
+                .Do(async (e) =>
+                {
+                    String newAnime;
+                    Message[] x;
+
+                    x = await e.Channel.DownloadMessages(2);
+                    newAnime = x[1].RawText;
+                    if (!newAnime.Contains("csgoani.me"))
+                    {
+                        await e.Channel.SendMessage("Why would you waste a good meme like that?");
+                        await e.Channel.SendMessage("I'm not putting any memes in the cancer database");
+                    }
+                    else if (animemes.Contains(newAnime))
+                    {
+                        await e.Channel.SendMessage("Anime was a mistake and your reposting only makes it worse");
+                    }
+                    else
+                    {
+                        animemes.Add(newAnime);
+                        File.WriteAllLines("C:\\Users\\Paddy\\Documents\\Projects\\DiscordBot\\Animes.txt", animemes);
+                        await e.Channel.SendMessage("You're cancer for doing this to me...");
+                        await e.Channel.SendMessage("Anime added (go fuck yourself)");
+                    }
+                });
         }
 
         //takes most recent message before command and stores it as a meme (it should always be a url but I guess copy pastas can work)
@@ -124,7 +157,11 @@ namespace DiscordBot
 
                     x = await e.Channel.DownloadMessages(2);
                     newMeme = x[1].RawText;
-                    if (memes.Contains(newMeme))
+                    if (newMeme.Contains("csgoani.me"))
+                    {
+                        await e.Channel.SendMessage("Our memes are too pure for that cancer");
+                    }
+                    else if (memes.Contains(newMeme))
                     {
                         await e.Channel.SendMessage("That's an old meme you dip!");
                     }
@@ -134,6 +171,16 @@ namespace DiscordBot
                         File.WriteAllLines("C:\\Users\\Paddy\\Documents\\Projects\\DiscordBot\\Memes.txt", memes);
                         await e.Channel.SendMessage("Meme added");
                     }
+                });
+        }
+
+        //outputs cancer
+        private void OutputAnime()
+        {
+            commands.CreateCommand("anime")
+                .Do(async (e) =>
+                {
+                    await e.Channel.SendMessage(animemes[rng.Next(animemes.Count)]);
                 });
         }
 
