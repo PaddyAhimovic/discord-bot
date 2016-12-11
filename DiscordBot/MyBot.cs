@@ -21,10 +21,12 @@ namespace DiscordBot
         List<string> memes = File.ReadAllLines("C:\\Users\\Paddy\\Documents\\Projects\\DiscordBot\\Memes.txt").ToList();
         List<string> animemes = File.ReadAllLines("C:\\Users\\Paddy\\Documents\\Projects\\DiscordBot\\Animes.txt").ToList();
         Random rng;
+        int haikuCount;
 
         public MyBot()
         {
             rng = new Random();
+            haikuCount = 0;
 
             discord = new DiscordClient(x =>
             {
@@ -165,11 +167,33 @@ namespace DiscordBot
                     {
                         await e.Channel.SendMessage("That's an old meme you dip!");
                     }
+                    else if (haikuCount == 5)
+                    {
+                        await e.Channel.SendMessage("Max haikus reached for the day. Come back tomorrow fucker");
+                    }
                     else
                     {
                         memes.Add(newMeme);
                         File.WriteAllLines("C:\\Users\\Paddy\\Documents\\Projects\\DiscordBot\\Memes.txt", memes);
                         await e.Channel.SendMessage("Meme added");
+                        
+                        //checks if it's a youtube video
+                        if (newMeme.Contains("youtube.com"))
+                        {
+                            haikuCount++;
+                            if (haikuCount == 5)
+                            {
+                                await e.Channel.SendMessage("That's the last haiku for today");
+                            }
+                            else if (haikuCount > 1)
+                            {
+                                await e.Channel.SendMessage("There have been " + haikuCount + " youtube haikus submitted today (5 allowed per day)");
+                            }
+                            else
+                            {
+                                await e.Channel.SendMessage("There has been " + haikuCount + " youtube haiku submitted today (5 allowed per day)");
+                            }
+                        }
                     }
                 });
         }
