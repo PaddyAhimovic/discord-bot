@@ -111,6 +111,12 @@ namespace DiscordBot
             AddAnime();
             OutputMeme();
             OutputAnime();
+            OutputMemeSize();
+            OutputAnimeSize();
+            Roulette();
+            OutputNewestMeme();
+            OutputHaikuCount();
+            OutputOGMemeCount();
             //connects bot to all the servers it's in
             discord.ExecuteAndWait(async () =>
             {
@@ -225,6 +231,101 @@ namespace DiscordBot
         private void Log(object sender, LogMessageEventArgs e)
         {
             Console.WriteLine(e.Message);
+        }
+
+        //outputs the current size of the meme database
+        private void OutputMemeSize()
+        {
+            commands.CreateCommand("how big")
+                .Do(async (e) =>
+                {
+                    await e.Channel.SendMessage("There are currently " + memes.Count.ToString() + " dank spicy memes in the meme database");
+                });
+        }
+
+        //gets the amount of youtube haikus in the meme database
+        //implimented in OutputOGMemeCount()
+        private int GetHaikuCount()
+        {
+            int counter = 0;
+
+            for (int i = 0; i < memes.Count; i++)
+            {
+                if (memes[i].Contains("youtube.com") || memes[i].Contains("youtu.be"))
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
+        //outputs the amount of OG memes in the meme database
+        private void OutputOGMemeCount()
+        {
+            commands.CreateCommand("how meme")
+                .Do(async (e) =>
+                {
+                    await e.Channel.SendMessage("there are currently " + (memes.Count - GetHaikuCount()).ToString() + " OG funny guy memes in the meme database");
+                    await e.Channel.SendMessage("I'm proud of all of you");
+                });
+        }
+
+        //outputs the amount of youtube haikus in the meme database
+        private void OutputHaikuCount()
+        {
+            commands.CreateCommand("how many haikus")
+                .Do(async (e) =>
+                {
+                    await e.Channel.SendMessage("there are currently " + GetHaikuCount().ToString() + " youtube haikus in the meme database");
+                    await e.Channel.SendMessage("Remeber, \"5 a day and I love being gay\" - Paddy");
+                });
+        }
+
+        //outputs the amount of cancer we've accumulated
+        private void OutputAnimeSize()
+        {
+            commands.CreateCommand("how weeb")
+                .Do(async (e) =>
+                {
+                    await e.Channel.SendMessage("I currently have " + animemes.Count.ToString() + " cancer cells (csgoanimes) in my body");
+                });
+        }
+
+        //plays a game of russian roulette
+        private void Roulette()
+        {
+            commands.CreateCommand("roulette")
+                .Do(async (e) =>
+                {
+                    string name;
+                    Message[] newMessage;
+
+                    newMessage = await e.Channel.DownloadMessages(1);
+                    name = newMessage[0].User.Name;
+                    await e.Channel.SendMessage(name + " is  playing russian roulette");
+
+                    if (rng.Next(6) == 0)
+                    {
+                        await e.Channel.SendMessage("after pulling the trigger " + name + " died instantly as the bullet was in the chamber");
+                        await e.Channel.SendMessage("I wish he took me with him");
+                    }
+                    else
+                    {
+                        await e.Channel.SendMessage("sucks for you " + name + " looks like you didn't die");
+                        await e.Channel.SendMessage("better luck next time f@g");
+                    }
+                });
+        }
+
+        //outputs the newest meme
+        private void OutputNewestMeme()
+        {
+            commands.CreateCommand("newest meme")
+                .Do(async (e) =>
+                {
+                    await e.Channel.SendMessage(memes[memes.Count - 1]);
+                    await e.Channel.SendMessage("this is the freshest meme we have");
+                });
         }
     }
 }
