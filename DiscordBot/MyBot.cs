@@ -167,7 +167,11 @@ namespace DiscordBot
                     {
                         await e.Channel.SendMessage("That's an old meme you dip!");
                     }
-                    else if (haikuCount == 5)
+                    else if (newMeme.Contains("scontent.xxx.fbcdn"))
+                    {
+                        await e.Channel.SendMessage("we don't accept links of those type since they expire, please take a screenshot and use that");
+                    }
+                    else if (haikuCount == 5 && (newMeme.Contains("youtube.com") || newMeme.Contains("youtu.be")))
                     {
                         await e.Channel.SendMessage("Max haikus reached for the day. Come back tomorrow fucker");
                     }
@@ -178,7 +182,7 @@ namespace DiscordBot
                         await e.Channel.SendMessage("Meme added");
                         
                         //checks if it's a youtube video
-                        if (newMeme.Contains("youtube.com"))
+                        if (newMeme.Contains("youtube.com") || newMeme.Contains("youtu.be"))
                         {
                             haikuCount++;
                             if (haikuCount == 5)
