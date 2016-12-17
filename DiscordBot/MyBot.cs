@@ -277,7 +277,7 @@ namespace DiscordBot
                 .Do(async (e) =>
                 {
                     await e.Channel.SendMessage("there are currently " + GetHaikuCount().ToString() + " youtube haikus in the meme database");
-                    await e.Channel.SendMessage("Remeber, \"5 a day and I love being gay\" - Paddy");
+                    await e.Channel.SendMessage("Remember, \"5 a day and I love being gay\" - Paddy");
                 });
         }
 
