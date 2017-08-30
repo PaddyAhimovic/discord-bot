@@ -10,6 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+
+//NOTE: This bot contains inside jokes between close high school friends.
+//If you find yourself offended or confused don't worry because this entire thing is for funnies.
+//The jokes and memes found in this bot do not reflect the opinions of anyone involved in the creation or perpetuation of this bot.
 namespace DiscordBot
 {
     //TODO: classes for each person (doubtful), nickname changes for fun, utility (deleting), russian roullette
