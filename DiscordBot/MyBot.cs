@@ -10,13 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-
-//NOTE: This bot contains inside jokes between close high school friends.
-//If you find yourself offended or confused don't worry because this entire thing is for funnies.
-//The jokes and memes found in this bot do not reflect the opinions of anyone involved in the creation or perpetuation of this bot.
-namespace DiscordBot
 {
-    //TODO: classes for each person (doubtful), nickname changes for fun, utility (deleting), russian roullette
+    //TODO: classes for each person (doubtful), nickname changes for fun, utility (deleting)
     class MyBot
     {
         DiscordClient discord;
@@ -38,7 +33,7 @@ namespace DiscordBot
                 x.LogHandler = Log;
             });
 
-            //the bot either excepts mentions or exclamation marks as a prefix to it's commands
+            //the bot either accepts mentions or exclamation marks as a prefix to it's commands
             discord.UsingCommands(x =>
             {
                 x.PrefixChar = '!';
@@ -47,12 +42,12 @@ namespace DiscordBot
 
             commands = discord.GetService<CommandService>();
             
-            //yeah yeah I know that this could all be slimmed down with classes but fuck that
+            //yeah yeah I know that this could all be slimmed down with classes but whatever
             //either way these are the descriptions of everyone with images
             commands.CreateCommand("Christian")
                 .Do(async (e) =>
                 {
-                    await e.Channel.SendMessage("Gay weeb who unironically likes visual novels");
+                    await e.Channel.SendMessage("Dweeb who unironically likes visual novels");
                 });
 
             commands.CreateCommand("Jacob")
@@ -65,7 +60,7 @@ namespace DiscordBot
             commands.CreateCommand("Jeffrey")
                 .Do(async (e) =>
                 {
-                    await e.Channel.SendMessage("How the fuck did we let a jew be admin?");
+                    await e.Channel.SendMessage("How did we let this guy be admin?");
                     await e.Channel.SendMessage("https://cdn.discordapp.com/attachments/158721080813420544/256994569122480128/20150825_131902.jpg");
                 });
 
@@ -86,14 +81,14 @@ namespace DiscordBot
             commands.CreateCommand("Ennis")
                 .Do(async (e) =>
                 {
-                    await e.Channel.SendMessage("Put your cock away!");
+                    await e.Channel.SendMessage("Put your **** away!");
                     await e.Channel.SendMessage("http://i.imgur.com/wfRbBAN.png");
                 });
 
             commands.CreateCommand("Daniel")
                 .Do(async (e) =>
                 {
-                    await e.Channel.SendMessage("Slashing asses since 1998");
+                    await e.Channel.SendMessage("Slashing ***** since 1998");
                 });
 
             commands.CreateCommand("I gotta move here")
@@ -142,7 +137,7 @@ namespace DiscordBot
                     if (!newAnime.Contains("csgoani.me"))
                     {
                         await e.Channel.SendMessage("Why would you waste a good meme like that?");
-                        await e.Channel.SendMessage("I'm not putting any memes in the cancer database");
+                        await e.Channel.SendMessage("I'm not putting any memes in the bad database");
                     }
                     else if (animemes.Contains(newAnime))
                     {
@@ -152,8 +147,8 @@ namespace DiscordBot
                     {
                         animemes.Add(newAnime);
                         File.WriteAllLines("C:\\Users\\Paddy\\Documents\\Projects\\DiscordBot\\Animes.txt", animemes);
-                        await e.Channel.SendMessage("You're cancer for doing this to me...");
-                        await e.Channel.SendMessage("Anime added (go fuck yourself)");
+                        await e.Channel.SendMessage("You're mean for doing this to me...");
+                        await e.Channel.SendMessage("Anime added (please stop)");
                     }
                 });
         }
@@ -171,7 +166,7 @@ namespace DiscordBot
                     newMeme = x[1].RawText;
                     if (newMeme.Contains("csgoani.me"))
                     {
-                        await e.Channel.SendMessage("Our memes are too pure for that cancer");
+                        await e.Channel.SendMessage("Our memes are too pure for that bad");
                     }
                     else if (memes.Contains(newMeme))
                     {
@@ -183,7 +178,7 @@ namespace DiscordBot
                     }
                     else if (haikuCount == 5 && (newMeme.Contains("youtube.com") || newMeme.Contains("youtu.be")))
                     {
-                        await e.Channel.SendMessage("Max haikus reached for the day. Come back tomorrow fucker");
+                        await e.Channel.SendMessage("Max haikus reached for the day. Come back tomorrow buddy");
                     }
                     else
                     {
@@ -212,7 +207,7 @@ namespace DiscordBot
                 });
         }
 
-        //outputs cancer
+        //outputs bad
         private void OutputAnime()
         {
             commands.CreateCommand("anime")
@@ -228,6 +223,7 @@ namespace DiscordBot
             commands.CreateCommand("meme")
                 .Do(async (e) =>
                 {
+		    await e.Channel.SendMessage("woohoo, this is my purpose!!");
                     await e.Channel.SendMessage(memes[rng.Next(memes.Count)]);
                 });
         }
@@ -291,11 +287,11 @@ namespace DiscordBot
             commands.CreateCommand("how weeb")
                 .Do(async (e) =>
                 {
-                    await e.Channel.SendMessage("I currently have " + animemes.Count.ToString() + " cancer cells (csgoanimes) in my body");
+                    await e.Channel.SendMessage("I currently have " + animemes.Count.ToString() + " bad (csgoanimes) in my body");
                 });
         }
 
-        //plays a game of russian roulette
+        //plays a game of roulette
         private void Roulette()
         {
             commands.CreateCommand("roulette")
@@ -306,7 +302,7 @@ namespace DiscordBot
 
                     newMessage = await e.Channel.DownloadMessages(1);
                     name = newMessage[0].User.Name;
-                    await e.Channel.SendMessage(name + " is  playing russian roulette");
+                    await e.Channel.SendMessage(name + " is  playing roulette");
 
                     if (rng.Next(6) == 0)
                     {
@@ -316,7 +312,7 @@ namespace DiscordBot
                     else
                     {
                         await e.Channel.SendMessage("sucks for you " + name + " looks like you didn't die");
-                        await e.Channel.SendMessage("better luck next time f@g");
+                        await e.Channel.SendMessage("better luck next time pal");
                     }
                 });
         }
